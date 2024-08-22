@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Results</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>Analysis and Compare</h1>
+    <!-- Main form for overall statistics -->
+    <form>
+        <table>
+            <tr>
+                <th>Statistic</th>
+                <th>Aggregated</th>
+                <th>Value</th>
+                <th>Compare</th>
+            </tr>
+            <tr>
+                <td>Word Count</td>
+                <td>750</td>
+                <td><input type="text" th:value="${nlpStatistics['Word Count']}" readonly/></td>
+                <td><textarea rows="2" cols="40" readonly th:text="${nlpStatistics['Word Count Comparison']}"></textarea></td>
+            </tr>
+            <tr>
+                <td>Sentence Count</td>
+                <td>32</td>
+                <td><input type="text" th:value="${nlpStatistics['Sentence Count']}" readonly/></td>
+                <td><textarea rows="2" cols="40" readonly th:text="${nlpStatistics['Sentence Count Comparison']}"></textarea></td>
+            </tr>
+            <tr>
+                <td>Noun Count</td>
+                <td>322</td>
+                <td><input type="text" th:value="${nlpStatistics['Noun Count']}" readonly/></td>
+                <td><textarea rows="2" cols="40" readonly th:text="${nlpStatistics['Noun Count Comparison']}"></textarea></td>
+            </tr>
+            <tr>
+                <td>Flesch-Kincaid Readability Score</td>
+                <td>58.1533</td>
+                <td><input type="text" th:value="${nlpStatistics['Flesch-Kincaid Readability Score']}" readonly/></td>
+                <td><textarea rows="2" cols="40" readonly th:text="${nlpStatistics['Readability Score Comparison']}"></textarea></td>
+            </tr>
+            <tr>
+                <td>Readability Level</td>
+                <td>College-level text</td>
+                <td><textarea rows="2" cols="40" readonly th:text="${nlpStatistics['Readability Level']}"></textarea></td>
+                <td><textarea rows="2" cols="40" readonly th:text="${nlpStatistics['Readability Level Comparison']}"></textarea></td>
+            </tr>
+            <tr>
+                <td>Overall Sentiment</td>
+                <td>Neutral (0.0691)</td>
+                <td><input type="text" th:value="${nlpStatistics['Overall Sentiment']}" readonly/></td>
+                <td><textarea rows="2" cols="40" readonly th:text="${nlpStatistics['Overall Sentiment Comparison']}"></textarea></td>
+            </tr>
+        </table>
+    </form>
+
+    <!-- Separate form for Sentence-level Sentiment -->
+    <h2>Sentence-Level Sentiment Analysis: find the poli</h2>
+    <form method="post" action="/analyzeSentences">
+        <table>
+            <tr>
+                <th>Sentence</th>
+                <th>Sentiment</th>
+            </tr>
+            <tr th:each="entry : ${nlpStatistics}">
+                <td th:if="${entry.getKey().contains('Sentiment for Sentence')}" th:text="${entry.getKey()} + ':'"></td>
+                <td th:if="${entry.getKey().contains('Sentiment for Sentence')}">
+                    <input type="text" th:value="${entry.getValue()}" readonly/>
+                </td>
+            </tr>
+        </table>
+    </form>
+
+    <!-- Navigation Links -->
+    <div>
+        <a href="/input">Analyze Another Text</a>
+    </div>
+
+    <!-- Instructions -->
+    <h3>Sentiment Analysis Rule: Overall Sentiment is the average of Sentiment for Sentences</h3>
+    <ul>
+        <li>-1 indicates Very Negative</li>
+        <li>-0.5 indicates Negative</li>
+        <li>0 indicates Neutral</li>
+        <li>0.5 indicates Positive</li>
+        <li>1 indicates Very Positive</li>
+    </ul>
+
+    <h3>Readability Rule: calculate score according to Flesch-Kincaid reading ease formula</h3>
+    <ul>
+        <li>90-100: Very easy to read</li>
+        <li>60-90: Easily understood by 13-15-year-olds</li>
+        <li>30-60: College-level text</li>
+        <li>30-: Very difficult to read</li>
+    </ul>
+</body>
+</html>
