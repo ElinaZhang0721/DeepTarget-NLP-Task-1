@@ -12,14 +12,14 @@ This is a project that combines a Java Spring Boot web application and a Python-
 
 ### Java Spring Boot Application
 1. Install dependencies using Maven
-2. Install from 'pom.xml' using 'mvn clean install'.
+2. Install from `pom.xml` using `mvn clean install`.
 3. Run the Spring Boot application using `mvn spring-boot:run`.
-4. Access the local webpage using 'http://localhost:8080/input'.
+4. Access the local webpage using `http://localhost:8080/input`.
 
 ### Python Web Scraper
 1. Install dependencies: `pip install -r requirements.txt`.
 2. Run the web scraper: `python web.py`.
-3. Data Analysis on Jupyter Notebook: 'stat.ipynb'
+3. Data Analysis on Jupyter Notebook: `stat.ipynb`.
 
 ## Requirements
 
