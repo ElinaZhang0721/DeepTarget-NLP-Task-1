@@ -18,8 +18,8 @@ This is a project that combines a Java Spring Boot web application and a Python-
 
 ### Python Web Scraper
 1. Install dependencies: `pip install -r requirements.txt`.
-2. Run the web scraper: `python web.py`.
-3. Data Analysis on Jupyter Notebook: `stat.ipynb`.
+2. Run the web scraper: `python web.py` - raw data collected on `scraped_data.xlsx`
+3. Data Analysis on Jupyter Notebook: `stat.ipynb` - cleaned data collected on `cleaned_data.xlsx`
 
 ## Requirements
 
