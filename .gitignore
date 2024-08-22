@@ -1,0 +1,22 @@
+# Maven
+target/
+*.jar
+*.war
+*.ear
+
+# IntelliJ IDEA
+.idea/
+*.iml
+
+# Eclipse
+.project
+.classpath
+.settings/
+
+# Python
+venv/
+*.pyc
+__pycache__/
+
+# Jupyter Notebooks
+.ipynb_checkpoints/
